@@ -159,4 +159,10 @@ public class JdbcMemberRepository implements MemberRepository {
 	private void close(Connection conn) throws SQLException {
 		DataSourceUtils.releaseConnection(conn, dataSource);
 	}
+
+	@Override
+	public Optional<Member> deleteByName(String name) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
 }

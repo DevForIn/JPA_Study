@@ -40,4 +40,10 @@ public class MemoryMemberRepository implements MemberRepository{
 		store.clear();
 	}
 
+	@Override
+	public Optional<Member> deleteByName(String name) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
 }

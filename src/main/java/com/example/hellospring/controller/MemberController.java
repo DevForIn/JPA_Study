@@ -3,10 +3,15 @@ package com.example.hellospring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hellospring.domain.Member;
 import com.example.hellospring.service.MemberService;
@@ -23,23 +28,42 @@ public class MemberController{
 		this.memberService = memberService;
 	} 
 	
+//	@GetMapping("/")
+//	public String home() {
+//		return "home";
+//	}
 	
-	@GetMapping("/members/new")
-	public String createFomr() {
-		return "members/createMemberForm";
+	@GetMapping("/")
+	public ResponseEntity<?> list() {
+		List<Member> memberList = memberService.findMembers();
+ 		return ResponseEntity.status(HttpStatus.OK).body(memberList);
+		
 	}
 	
-	@PostMapping("/members/new")
-	public String create(MemberForm form) {
+//	@PostMapping("/members/new")
+//	public Member create(String name) {
+//		
+//		Member member = new Member(); 
+//		
+//		
+//		System.out.println("Member = "+member.getName());
+//		
+//		member = memberService.join(member);
+//		
+//		return member;
+//	}
+	
+	@GetMapping("/members/delete")
+	public String delete() {
+		return "members/deleteMemberForm";
+	}
+	
+	@DeleteMapping("/members/delete/{name}")
+	public String deleteUser(@PathVariable("name") String name) {		
 		
-		Member member = new Member(); 
-		member.setName(form.getName());
-		
-		System.out.println("Member = "+member.getName());
-		
-		memberService.join(member);
-		
-		return "redirect:/";
+		memberService.deleteByName(name);
+	
+		return "members/deleteMemberForm";
 	}
 	
 	@GetMapping("/members")

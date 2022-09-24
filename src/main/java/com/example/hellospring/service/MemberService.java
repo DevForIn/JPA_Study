@@ -20,20 +20,13 @@ public class MemberService {
 	}
 	
 	// 회원가입
-	public Long join(Member member) {
-		
+	public Member join(Member member) {
+		Member newMember = member;
 		// 같은 이름이 있는 중복 회원 X
 		validateDuplicateMember(member);
 		 
-		memberRepository.save(member);
-		return member.getId();
-	}
-
-	private void validateDuplicateMember(Member member) {
-		memberRepository.findByName(member.getName())
-			.ifPresent(m -> {
-				throw new IllegalStateException("이미 존재하는 회원");
-			});
+		newMember = memberRepository.save(member);
+		return newMember;
 	}
 	
 	// 전체 회원 조회
@@ -41,7 +34,21 @@ public class MemberService {
 		return memberRepository.findAll();
 	}
 	
+	// 특정 아이디 회원 조회 
 	public Optional<Member> findOne(Long memberId){
 		return memberRepository.findById(memberId);
+	}
+
+	// 특정 아이디의 회원삭제 
+	public Optional<Member> deleteByName(String name) {
+		return memberRepository.deleteByName(name);
+		
+	}
+	
+	private void validateDuplicateMember(Member member) {
+		memberRepository.findByName(member.getName())
+			.ifPresent(m -> {
+				throw new IllegalStateException("이미 존재하는 회원");
+			});
 	}
 }

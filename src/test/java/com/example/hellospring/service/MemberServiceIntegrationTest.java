@@ -23,31 +23,31 @@ class MemberServiceIntegrationTest {
 	@Test
 	@Commit
 	void 회원가입() {
-		//given
-		Member member = new Member();
-		member.setName("spring");
-		
-		//when
-		Long saveId = memberService.join(member);
-		
-		//then
-		Member findMember = memberService.findOne(saveId).get();
-		assertThat(member.getName()).isEqualTo(findMember.getName());
+//		//given
+//		Member member = new Member();
+//		member.setName("spring");
+//		
+//		//when
+//		Long saveId = memberService.join(member);
+//		
+//		//then
+//		Member findMember = memberService.findOne(saveId).get();
+//		assertThat(member.getName()).isEqualTo(findMember.getName());
 	}
 	
 	@Test
 	void 중복회원예외() {
-		//given
-		Member member1 = new Member();
-		member1.setName("Spring");
-		
-		Member member2 = new Member();
-		member2.setName("Spring");
-		//when
-		memberService.join(member1);		
-		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member1));
-		assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원");
-
+//		//given
+//		Member member1 = new Member();
+//		member1.setName("Spring");
+//		
+//		Member member2 = new Member();
+//		member2.setName("Spring");
+//		//when
+//		memberService.join(member1);		
+//		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member1));
+//		assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원");
+//
 	}
 
 	@Test

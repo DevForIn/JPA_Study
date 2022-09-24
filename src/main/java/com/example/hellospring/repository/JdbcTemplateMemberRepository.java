@@ -59,4 +59,10 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 			return member;
 		};
 	}
+
+	@Override
+	public Optional<Member> deleteByName(String name) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
 }
