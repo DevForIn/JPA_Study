@@ -13,6 +13,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	Member findById(long id);
 	List<Member> findAll();
 	void deleteById(Long id);	
+	@SuppressWarnings("unchecked")
 	Member save(Member member);
 	
 }
