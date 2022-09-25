@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Member")
 public class Member {
 	
@@ -31,9 +33,6 @@ public class Member {
 	@Column(name = "AGE")
 	private int age;
 
-	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -64,7 +63,5 @@ public class Member {
 
 	public void setAge(int age) {
 		this.age = age;
-	}
-	
-	
+	}	
 }

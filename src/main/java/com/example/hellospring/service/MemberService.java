@@ -24,10 +24,8 @@ public class MemberService {
 		return memberRepository.findAll();
 	}
 
-	public void saveMember(Member member) {
-		memberRepository.save(member);
-		
-	}
-	
-	
+	@Transactional
+	public Member create(Member member) {
+		return memberRepository.save(member);	
+	}	
 }
