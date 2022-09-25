@@ -5,60 +5,39 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hellospring.domain.Member;
-import com.example.hellospring.service.MemberService;
+import com.example.hellospring.repository.MemberRepository;
 
 
-@Controller
+@RestController
 public class MemberController{
 	
-	private MemberService memberService;
-	
-	// 의존 관계 추가 
 	@Autowired
-	public MemberController(MemberService memberService) {
-		this.memberService = memberService;
-	} 
-
-//	@GetMapping("/")
-//	public ResponseEntity<?> list() {
-//		List<Member> memberList = memberService.findMembers();
-// 		return ResponseEntity.status(HttpStatus.OK).body(memberList);		
-//	}
+	MemberRepository memberRepository;
 	
-//	@PostMapping("/members/new")
-//	public Member create(String name) {
-//		
-//		Member member = new Member(); 
-//		
-//		
-//		System.out.println("Member = "+member.getName());
-//		
-//		member = memberService.join(member);
-//		
-//		return member;
-//	}
 	
+	@GetMapping("/members")
+	public List<Member> members() {
+		List<Member> list = memberRepository.findAll();
+		return list;
+	}
+	
+	@PostMapping("/members")
+	public String memberCreate(@RequestBody Member member){	
+		Member newMember = memberRepository.save(member);
+		return newMember.toString();
+	}
 	
 	@DeleteMapping("/members/delete/{name}")
 	public String deleteUser(@PathVariable("name") String name) {		
 		
-		memberService.deleteByName(name);
-	
 		return "members/deleteMemberForm";
-	}
-	
-	@GetMapping("/members")
-	public ResponseEntity<?> memberlist() {
-		List<Member> memberList = memberService.findMembers();
- 		return ResponseEntity.status(HttpStatus.OK).body(memberList);
 	}
 }

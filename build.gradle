@@ -20,6 +20,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// Swagger
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	// lombok 
+	implementation 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
