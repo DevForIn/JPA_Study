@@ -7,19 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.hellospring.domain.Member;
+import com.example.hellospring.domain.MemberResponse;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long>{
 	
-	//
-	Member save(Member member);
-	
-	Optional<Member> findById(Long id);
-	
-	Optional<Member> findByName(String name);
-	
+	Member findById(long id);
 	List<Member> findAll();
-
-	Optional<Member> deleteByName(String name);	
-	
+	void deleteById(Long id);	
 }
