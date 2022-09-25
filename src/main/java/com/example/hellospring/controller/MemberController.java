@@ -27,18 +27,12 @@ public class MemberController{
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	} 
-	
+
 //	@GetMapping("/")
-//	public String home() {
-//		return "home";
+//	public ResponseEntity<?> list() {
+//		List<Member> memberList = memberService.findMembers();
+// 		return ResponseEntity.status(HttpStatus.OK).body(memberList);		
 //	}
-	
-	@GetMapping("/")
-	public ResponseEntity<?> list() {
-		List<Member> memberList = memberService.findMembers();
- 		return ResponseEntity.status(HttpStatus.OK).body(memberList);
-		
-	}
 	
 //	@PostMapping("/members/new")
 //	public Member create(String name) {
@@ -53,10 +47,6 @@ public class MemberController{
 //		return member;
 //	}
 	
-	@GetMapping("/members/delete")
-	public String delete() {
-		return "members/deleteMemberForm";
-	}
 	
 	@DeleteMapping("/members/delete/{name}")
 	public String deleteUser(@PathVariable("name") String name) {		
@@ -67,10 +57,8 @@ public class MemberController{
 	}
 	
 	@GetMapping("/members")
-	public String list(Model model) { 
-		List<Member> members = memberService.findMembers();
-		model.addAttribute("members",members);
-		
-		return "members/memberList";
+	public ResponseEntity<?> memberlist() {
+		List<Member> memberList = memberService.findMembers();
+ 		return ResponseEntity.status(HttpStatus.OK).body(memberList);
 	}
 }
