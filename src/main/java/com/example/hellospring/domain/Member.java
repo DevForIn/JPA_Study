@@ -7,11 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="Member")
 public class Member {
 	
@@ -28,13 +30,9 @@ public class Member {
 	
 	@Column(name = "AGE")
 	private int age;
-	
-	public Member(String name,String email,int age) {
-		this.age=age;
-		this.email=email;
-		this.name=name;
-	}
 
+	
+	
 	
 	public Long getId() {
 		return id;

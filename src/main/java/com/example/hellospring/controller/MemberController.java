@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hellospring.domain.Member;
@@ -29,5 +30,10 @@ public class MemberController{
 	public List<Member> list() {
 		List<Member> list = memberService.getMembers();
 		return list;
+	}
+	
+	@PostMapping("/members")
+	public void create(Member member) {
+		memberService.saveMember(member);
 	}
 }
