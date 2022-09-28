@@ -44,6 +44,7 @@ public class MemberService {
 		member.setAge(updateMember.getAge());
 		member.setEmail(updateMember.getEmail());
 		member.setName(updateMember.getName());
+		memberRepository.save(member);
 		return 1;
 	}	
 }
