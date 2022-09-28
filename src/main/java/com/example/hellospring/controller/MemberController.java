@@ -3,8 +3,10 @@ package com.example.hellospring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hellospring.domain.Member;
@@ -32,5 +34,14 @@ public class MemberController{
 	@PostMapping("/members")
 	public void create(Member member) {
 		memberService.create(member);
+	}
+	@PutMapping("/members/{id}")
+	public void put(Long id,Member member) {
+		memberService.update(id,member);
+	}
+	
+	@DeleteMapping("/members/{id}")
+	public void delete(Long id) {
+		memberService.delete(id);
 	}
 }
