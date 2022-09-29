@@ -9,6 +9,8 @@ import com.example.hellospring.domain.Member;
 import com.example.hellospring.domain.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import lombok.NonNull;
+
 @Repository
 public class MemberRepositorySupport extends QuerydslRepositorySupport {
 	private final JPAQueryFactory queryFactory;
@@ -18,6 +20,7 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
 		this.queryFactory = queryFactory;
 	}
 	
+	@NonNull
 	public List<Member> findByName(String name){
 		return queryFactory.selectFrom(QMember.member)
 				.where(QMember.member.name.eq(name))

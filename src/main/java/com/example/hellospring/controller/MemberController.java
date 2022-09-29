@@ -2,6 +2,7 @@ package com.example.hellospring.controller;
 
 import java.util.List;
 
+import org.apache.tomcat.jni.Error;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,11 @@ public class MemberController{
 	// Member QClass 적용 사례
 	@GetMapping("/QMembers/{name}")
 	public List<Member> qList(String name) {
-		return memberRepositorySuport.findByName(name);		
+		List<Member> result = memberRepositorySuport.findByName(name);
+		if(!result.isEmpty()) 
+			return result;
+		else 
+			return null;
 	}
 	
 	// Member 생성 Member.id = Auto increment
