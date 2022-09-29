@@ -18,5 +18,5 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	
 	@SuppressWarnings("unchecked")
 	Member save(Member member);
-	
+		
 }

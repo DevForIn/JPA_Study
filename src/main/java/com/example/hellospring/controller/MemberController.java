@@ -11,26 +11,36 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hellospring.domain.Member;
+import com.example.hellospring.repository.MemberRepositorySupport;
 import com.example.hellospring.service.MemberService;
 
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+
+
 @RestController
 public class MemberController{
 	
 	private final MemberService memberService;
+	private final MemberRepositorySupport memberRepositorySuport;
 	
 	@Autowired
-	public MemberController(MemberService memberService) {
+	public MemberController(MemberService memberService, MemberRepositorySupport memberRepositorySuport) {
 		this.memberService = memberService;
+		this.memberRepositorySuport = memberRepositorySuport;
 	}
+	
 	
 	// Member 전체 조회
 	@GetMapping("/members")
 	public List<Member> list() {
 		List<Member> list = memberService.getMembers();
 		return list;
+	}
+	
+	// Member QClass 적용 사례
+	@GetMapping("/QMembers/{name}")
+	public List<Member> qList(String name) {
+		return memberRepositorySuport.findByName(name);		
 	}
 	
 	// Member 생성 Member.id = Auto increment
